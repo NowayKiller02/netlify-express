@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Optimaliseren voor mobile devices. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Icon Font importeren. -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link rel="stylesheet" href="../styles/style.css" type=" text/css">
+    <title>YLOPC - Contact</title>
+</head>
+
+<body>
+    <!-- Bovenste navigatie maken. -->
+    <nav class="z-depth-0">
+        <div class="nav-wrapper container">
+            <a href="../index.html">YLOPC</a>
+            <span class="right grey-text text-darken-1">
+                <!-- Voor gebruik van iconen, zie: https://materializecss.com/icons.html -->
+                <i class="material-icons sidenav-trigger" data-target="side-menu" id="menuPointer">menu</i>
+            </span>
+        </div>
+    </nav>
+
+    <!-- side nav -->
+    <ul id="side-menu" class="sidenav side-menu">
+        <br>
+        <li><a href="../index.html" class="waves-effect">Home</a></li>
+        <li><a href="./repairs.html" class="waves-effect">Repairs</a></li>
+        <li><a href="./contact.html" class="waves-effect">Contact</a></li>
+        <li><a href="./shoppingCart.html"><i class="material-icons">shopping_cart</i></a></li>
+    </ul>
+</body>
+
+
+<!-- Web content -->
+<div class=" center container grey-text text-darken-2">
+    <h5>Contact</h5>
+    <br>
+    <a href="mailto: yuran.loones@student.vives.be">yuran.loones@student.vives.be</a> <br><br>
+    <a href="tel:+32468415040">+32468415040</a>
+    <br>
+    <br>
+
+    <div class="footer">
+        <iframe width="95%" height="450" style="border:0;" loading="lazy" allowfullscreen
+             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDLFKhIyAhVJieu3wbyhze4O8ykPXOg2YU&q=Orchideeënlaan+1,+8900+Ieper">
+        </iframe>
+    </div>
+    
+</div>
+
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    // Zoek alle elementen die als CSS-klasse '.side-menu' hebben.
+    var elems = document.querySelectorAll('.side-menu');
+    // Maak een JavaScript object met opties daarin.
+    var options = { edge: "right" };
+    // Materialize CSS sidenav initialiseren.
+    M.Sidenav.init(elems, options);
+</script>
+</html>

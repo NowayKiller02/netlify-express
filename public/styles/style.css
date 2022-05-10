@@ -1,0 +1,159 @@
+/* Maak gebruik van variabelen in CSS. Meer info op W3schools. */
+:root{
+    --primary: #e69d00;
+    --secondary: #00fff2;
+    --title: #000000;
+}
+span{
+    cursor: pointer;
+}
+
+nav{
+    background: var(--primary);
+    border-bottom: 20px solid var(--secondary);
+}
+  
+nav a{
+    color: var(--title);
+}
+
+nav a span{
+    font-weight: bold;
+}
+
+nav .sidenav-trigger{
+    margin: 0;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+  }
+  
+  .price {
+    color: grey;
+    font-size: 20px;
+  }
+  
+  .card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .card button:hover {
+    opacity: 0.7;
+  }
+
+  .divc{
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+  }
+
+
+  .parent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    
+    .div1 { grid-area: 1 / 1 / 2 / 2; }
+    .div2 { grid-area: 1 / 2 / 2 / 3; }
+    .div3 { grid-area: 1 / 3 / 2 / 4; }
+    .div4 { grid-area: 2 / 1 / 3 / 2; }
+    .div5 { grid-area: 2 / 2 / 3 / 3; }
+    .div6 { grid-area: 2 / 3 / 3 / 4; }
+    .div7 { grid-area: 3 / 1 / 4 / 2; }
+    .div8 { grid-area: 3 / 2 / 4 / 3; }
+    .div9 { grid-area: 3 / 3 / 4 / 4; }
+    .div10 { grid-area: 4 / 1 / 5 / 2; }
+    .div11 { grid-area: 4 / 2 / 5 / 3; }
+    .div12 { grid-area: 4 / 3 / 5 / 4; }  
+
+    .centered{
+        margin: auto;
+        width: 95%;
+    }
+    select,label{
+      margin: 20px;
+      margin-left: auto;
+      width: 22%;
+    }
+
+
+    @media screen and (max-width: 750px) {
+      .divc{
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+      }
+        .parent {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(12, 1fr);
+            grid-column-gap: 0px;
+            grid-row-gap: 0px;
+            }
+            
+            .div1 { grid-area: 1 / 1 / 2 / 2; }
+            .div2 { grid-area: 2 / 1 / 3 / 2; }
+            .div3 { grid-area: 4 / 1 / 5 / 2; }
+            .div4 { grid-area: 3 / 1 / 4 / 2; }
+            .div5 { grid-area: 5 / 1 / 6 / 2; }
+            .div6 { grid-area: 6 / 1 / 7 / 2; }
+            .div7 { grid-area: 7 / 1 / 8 / 2; }
+            .div8 { grid-area: 8 / 1 / 9 / 2; }
+            .div9 { grid-area: 9 / 1 / 10 / 2; }
+            .div10 { grid-area: 10 / 1 / 11 / 2; }
+            .div11 { grid-area: 11 / 1 / 12 / 2; }
+            .div12 { grid-area: 12 / 1 / 13 / 2; } 
+    }
+
+    @media screen and (min-width: 750px) and (max-width: 1000px){
+      .divc{
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+      }
+        .parent {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            grid-column-gap: 0px;
+            grid-row-gap: 0px;
+            }
+            
+            .div1 { grid-area: 1 / 1 / 2 / 2; }
+            .div2 { grid-area: 1 / 2 / 2 / 3; }
+            .div3 { grid-area: 2 / 1 / 3 / 2; }
+            .div4 { grid-area: 2 / 2 / 3 / 3; }
+            .div5 { grid-area: 3 / 1 / 4 / 2; }
+            .div6 { grid-area: 3 / 2 / 4 / 3; }
+            .div7 { grid-area: 4 / 1 / 5 / 2; }
+            .div8 { grid-area: 4 / 2 / 5 / 3; }
+            .div9 { grid-area: 5 / 1 / 6 / 2; }
+            .div10 { grid-area: 5 / 2 / 6 / 3; }
+            .div11 { grid-area: 6 / 1 / 7 / 2; }
+            .div12 { grid-area: 6 / 2 / 7 / 3; } 
+
+    }

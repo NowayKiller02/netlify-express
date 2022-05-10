@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="#">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Optimaliseren voor mobile devices. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Icon Font importeren. -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Stukje code dat tekst selecteerbaar maakt om voor te lezen -->
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=QmAP38EF"></script>
+
+    <!-- Zorgt voor extra groene vinkjes bij lighthouse -->
+    <meta name="theme-color" content="#00ACCD">
+    <link rel="apple-touch-icon" href="../images/icons/vives192.png">
+
+    <link rel="stylesheet" href="../styles/style.css" type=" text/css">
+    <title>YLOPC</title>
+</head>
+
+<body>
+    <!-- Bovenste navigatie maken. -->
+    <nav class="z-depth-0">
+        <div class="nav-wrapper container">
+            <a href="../index.html">YLOPC</a>
+            <span class="right grey-text text-darken-1">
+                <!-- Voor gebruik van iconen, zie: https://materializecss.com/icons.html -->
+                <i class="material-icons sidenav-trigger" data-target="side-menu" id="menuPointer">menu</i>
+            </span>
+        </div>
+    </nav>
+
+    <!-- side nav -->
+    <ul id="side-menu" class="sidenav side-menu">
+        <br>
+        <li><a href="../index.html" class="waves-effect">Home</a></li>
+        <li><a href="./repairs.html" class="waves-effect">Repairs</a></li>
+        <li><a href="./contact.html" class="waves-effect">Contact</a></li>
+        <li><a href="./shoppingCart.html"><i class="material-icons">shopping_cart</i></a></li>
+    </ul>
+
+
+
+    <!-- Content -->
+    <div class="divc"> 
+        <h2>Welke reparaties voeren wij uit?</h2>
+        <p>Met ons team van vakmensen zijn wij in staat om allerlei soorten reparaties aan laptops uit te voeren. Eigenlijk
+            is geen enkele laptop herstelling voor ons teveel gevraagd!</p>
+        <p>Daarbij is het ook goed om te weten dat wij nagenoeg alle laptops kunnen repareren. Dit geldt in ieder geval voor
+            laptops van HP, Dell, Acer, Asus, Lenovo, Toshiba, Surface, MSI en Alienware. Heeft u een defecte laptop van één
+            van deze merken? Dan weet u zeker dat we u verder kunnen helpen.</p>
+            <p>Aarzel dan ook zeker niet om ons te  <a href="./contact.html">contacteren</a> !</p>
+            
+    </div>
+
+
+
+
+
+</body>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script>
+    // Zoek alle elementen die als CSS-klasse '.side-menu' hebben.
+    var elems = document.querySelectorAll('.side-menu');
+    // Maak een JavaScript object met opties daarin.
+    var options = { edge: "right" };
+    // Materialize CSS sidenav initialiseren.
+    M.Sidenav.init(elems, options);
+</script>
+
+</html>

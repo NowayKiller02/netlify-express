@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="#">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Optimaliseren voor mobile devices. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Icon Font importeren. -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Zorgt voor extra groene vinkjes bij lighthouse -->
+    <meta name="theme-color" content="#00ACCD">
+    <link rel="apple-touch-icon" href="../images/icons/vives192.png">
+
+    <link rel="stylesheet" href="../styles/style.css" type=" text/css">
+    <title>YLOPC</title>
+
+</head>
+
+<body>
+    <!-- Bovenste navigatie maken. -->
+    <nav class="z-depth-0">
+        <div class="nav-wrapper container">
+            <a href="../index.html">YLOPC</a>
+            <span class="right grey-text text-darken-1">
+                <!-- Voor gebruik van iconen, zie: https://materializecss.com/icons.html -->
+                <i class="material-icons sidenav-trigger" data-target="side-menu" id="menuPointer">menu</i>
+            </span>
+        </div>
+    </nav>
+
+    <!-- side nav -->
+    <ul id="side-menu" class="sidenav side-menu">
+        <br>
+        <li><a href="../index.html" class="waves-effect">Home</a></li>
+        <li><a href="./repairs.html" class="waves-effect">Repairs</a></li>
+        <li><a href="./contact.html" class="waves-effect">Contact</a></li>
+        <li><a href="pages/shoppingCart.html"><i class="material-icons">shopping_cart</i></a></li>
+    </ul>
+
+    <!-- Content -->
+    <div class="divc">
+        <table id="itemList">
+
+        </table>
+        <center>
+            <button onclick="sendMail()" style="margin: 20px;">Reserveer</button>
+            <p>Bij het reserveren voor 23u garanderen wij dat u de dag erna kan komen afhalen</p>
+        </center>
+
+    </div>
+
+</body>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script>
+    var db;
+    var VersionID = 1;
+    var laptops = "";
+    var sent = true;
+
+    function onSuccess() {
+
+        swal("Succes!", "U kunt de producten morgen komen ophalen!", "success");
+        var DBOpenRequest = window.indexedDB.open("YLOPC", VersionID);
+        DBOpenRequest.onsuccess = function (event) {
+            var db = event.target.result;
+            // open a read/write db transaction, ready for clearing the data
+            var transaction = db.transaction(["items"], "readwrite");
+            // create an object store on the transaction
+            var objectStore = transaction.objectStore("items");
+            // Make a request to clear all the data out of the object store
+            var objectStoreRequest = objectStore.clear();
+            objectStoreRequest.onsuccess = function (event) {
+                console.log(event);
+                document.querySelector(`#itemList`).innerHTML = "";
+                getItems();
+            };
+        }
+    }
+
+    function onError(error) {
+        swal("Error...", "Er is iets misgelopen, probeer het opnieuw", "error");
+    }
+
+    function sendMail() {
+        var form_id = "jquery_form";
+        var time = new Date().toLocaleString()
+
+        var data = {
+            "access_token": "fkvpm2uuty4k9gs1pt2txai6"
+        };
+
+        var subject = "Somebody wants to pickup a laptop / laptops!";
+        var message = laptops + time;
+
+        data['subject'] = subject;
+        data['text'] = message;
+
+        console.log(data);
+
+        // Prevent sending mail 2 times...
+        if (!sent) {
+            $.post('https://postmail.invotes.com/send',
+                data,
+                onSuccess
+            ).fail(onError);
+        }
+
+        sent = true;
+        return false;
+
+    }
+
+
+
+    // Maken van arrays om de naam te linken aan de prijs en de foto.
+
+    var laptop = [
+        "DELL XPS 13",
+        'Microsoft Surface 4 15"',
+        "HP ZBook Create G7",
+        "HP Gaming 15",
+        "Realme Book 14",
+        "Gigabyte AORUS 15",
+        "HP Pavilion 15",
+        'MacBook Pro 16',
+        "Huawei MateBook 14",
+        "Lenovo IdeaPad Slim 3",
+        "ASUS ROG Strix G15",
+        "XPG XENIA 15"
+    ]
+
+    var pics = [
+        "../images/L1.jpg",
+        "../images/L2.jpg",
+        "../images/L3.jpg",
+        "../images/L4.jpg",
+        "../images/L5.jpg",
+        "../images/L6.jpg",
+        "../images/L7.jpg",
+        "../images/L8.jpg",
+        "../images/L9.jpg",
+        "../images/L10.jpg",
+        "../images/L11.jpg",
+        "../images/L12.jpg",
+    ]
+
+
+    var prizes = [
+        "1399.99",
+        "1499.99",
+        "1699.99",
+        "1199.99",
+        "1099.99",
+        "1699.99",
+        "799.99",
+        "2799.99",
+        "1199.99",
+        "599.99",
+        "1099.99",
+        "1199.99",
+    ]
+
+    var ids = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+    var items = ids.map((index) => {
+        return {
+            name: laptop[index],
+            cost: prizes[index],
+            pic: pics[index]
+        }
+    });
+
+    // Zoek alle elementen die als CSS-klasse '.side-menu' hebben.
+    var elems = document.querySelectorAll('.side-menu');
+    // Maak een JavaScript object met opties daarin.
+    var options = { edge: "right" };
+    // Materialize CSS sidenav initialiseren.
+    M.Sidenav.init(elems, options);
+
+
+
+    //Haalt alle items uit IndexedDB
+    function getItems() {
+        const table = document.querySelector(`#itemList`);
+
+        var request = window.indexedDB.open("YLOPC", VersionID);
+        request.onsuccess = function (event) {
+            var db = event.target.result;
+            var store = db.transaction(['items'], "readonly").objectStore('items');;
+            var index = store.index('itemName');
+
+            // Get everything in the store:
+            var cursorRequest = index.openCursor();
+            cursorRequest.onsuccess = function (e) {
+
+                var cursor = e.target.result;
+                console.log(cursor)
+                if (cursor) {
+                    const hmtl = `
+                        <tr>
+                            <td style="width:30%"><img style="width:50%" src="${items[cursor.value.itemName].pic}"></img></td>
+                            <td>${items[cursor.value.itemName].name}</td>
+                            <td>€ ${items[cursor.value.itemName].cost}</td>
+                            <td><button onclick="DeleteItem(${cursor.value.ID})" id="item${cursor.value.ID}">Verwijder</button></td>
+                        </tr>
+                    `;
+                    table.innerHTML += hmtl;
+                    laptops += items[cursor.value.itemName].name + ", ";
+                    // Dit leest elk item in de wagen voor, leek me irritant
+
+                    // var msg = new SpeechSynthesisUtterance();
+                    // msg.text = items[cursor.value.itemName].name;
+                    // window.speechSynthesis.speak(msg);
+                    cursor.continue();
+                }
+                else {
+                    //print res etc....
+                }
+            };
+        }
+
+    }
+
+    //Wordt uitgevoerd als je op delete klikt...
+    function DeleteItem(id) {
+        console.log(id);
+        swal({
+            title: "Ben je zeker?",
+            text: "dit item zal uit het winkelwagentje verwijderd worden",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Het item is verwijderd!", {
+                        icon: "success",
+                    });
+                    var request = window.indexedDB.open("YLOPC", VersionID);
+                    request.onsuccess = function (event) {
+                        console.log('De data verwijderen...');
+                        var db = event.target.result;
+                        var request = db.transaction("items", "readwrite").objectStore("items").delete(+id);
+                    }
+                    document.querySelector(`#itemList`).innerHTML = "";
+                    getItems();
+                } else {
+                    swal("Het items is niet verwijderd");
+                }
+            });
+    }
+
+
+    window.addEventListener('load', function () {
+        getItems();
+        sent = false;
+    });
+
+
+</script>
+
+
+
+
+</html>
